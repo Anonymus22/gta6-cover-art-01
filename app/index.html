@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Panels — multi-panel cover art maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app" class="app">
+  <aside class="controls">
+    <header class="brand">
+      <h1>Vice <span>Panels</span></h1>
+      <p>Your photo, a caption, and three clicks: multi-panel cover art in the sunset &amp; neon tradition, exported as a PNG. Photos never leave your machine.</p>
+    </header>
+
+    <section class="step">
+      <h2>1 · Photos</h2>
+      <div id="thumbs" class="thumbs"></div>
+      <label class="add-photo" for="file">+ Add your photo</label>
+      <input id="file" type="file" accept="image/*" multiple hidden>
+      <p class="hint">Click a panel on the cover, then click a photo to place it. Drag a photo file anywhere onto the page to add it.</p>
+    </section>
+
+    <section class="step">
+      <h2>2 · Layout</h2>
+      <div id="layouts" class="chips"></div>
+    </section>
+
+    <section class="step">
+      <h2>3 · Colour grade</h2>
+      <div id="grades" class="chips"></div>
+    </section>
+
+    <section class="step">
+      <h2>Panel</h2>
+      <p id="panel-info" class="panel-info">Panel 1 selected</p>
+      <label class="field">Zoom
+        <input id="zoom" type="range" min="1" max="3.5" step="0.01" value="1">
+      </label>
+      <div class="row">
+        <button id="fill-all" type="button">Fill all panels</button>
+        <button id="clear-panel" type="button">Clear panel</button>
+      </div>
+      <p class="hint">Drag inside a panel to reposition its photo; scroll over the cover to zoom it.</p>
+    </section>
+
+    <section class="step">
+      <h2>4 · Caption</h2>
+      <label class="field">Title
+        <textarea id="title" rows="2" maxlength="60"></textarea>
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitle" type="text" maxlength="60">
+      </label>
+      <div class="row">
+        <label class="field grow">Lettering
+          <select id="lettering">
+            <option value="block">Block</option>
+            <option value="sunset">Sunset</option>
+            <option value="neon">Neon Glow</option>
+            <option value="chrome">Chrome</option>
+          </select>
+        </label>
+        <label class="field grow">Position
+          <select id="title-pos">
+            <option value="bottom">Bottom</option>
+            <option value="top">Top</option>
+          </select>
+        </label>
+      </div>
+      <label class="field">Title size
+        <input id="title-scale" type="range" min="0.6" max="1.5" step="0.05" value="1">
+      </label>
+    </section>
+
+    <section class="step">
+      <h2>5 · Export</h2>
+      <label class="field">Post size
+        <select id="size">
+          <option value="1080x1080">Square · 1080 × 1080</option>
+          <option value="1080x1350">Portrait · 1080 × 1350</option>
+          <option value="1920x1080">Wide · 1920 × 1080</option>
+        </select>
+      </label>
+      <button id="export" class="primary" type="button">Export PNG</button>
+      <p id="status" class="status" role="status"></p>
+    </section>
+  </aside>
+
+  <main class="stage">
+    <canvas id="cover" width="1080" height="1350"></canvas>
+    <p class="stage-hint">Drag a photo inside a panel to reposition it · scroll to zoom · click a panel to select it</p>
+  </main>
+</div>
+<script type="module" src="./src/editor.js"></script>
+</body>
+</html>
